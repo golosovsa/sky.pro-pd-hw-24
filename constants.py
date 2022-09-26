@@ -1,5 +1,5 @@
-import os
+from pathlib import Path
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+BASE_DIR: Path = Path(__file__).absolute().parent
+DATA_DIR: Path = BASE_DIR.joinpath("data")
