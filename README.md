@@ -1,4 +1,5 @@
 # Homework 23
-[Link to the source](https://skyengpublic.notion.site/23-094d2fe4e9b944cda294bdefbd5a5124)
+[Link to the source](https://skyengpublic.notion.site/24-ae1cc335f5c34ffcbba553b0b44727fc)
 # Project status
-- [x] All tasks done
+- [x] Initial
+- [ ] All tasks done 
