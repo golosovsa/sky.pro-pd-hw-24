@@ -1,29 +1,33 @@
 """
     query filter
 """
+import re
 from operator import itemgetter
+from typing import Iterator, Any, List, Union, Iterable
 
 
-def query_filter(data, value):
+def query_filter(data: Union[Iterator[str], Iterable[str]], value: str) -> Union[Iterator[str], Iterable[str]]:
     return filter(lambda s: value in s, data)
 
 
-def query_map(data, value):
+def query_map(data: Union[Iterator[str], Iterable[str]], value: str) -> Union[Iterator[str], Iterable[str]]:
     return map(lambda s: s.split()[int(value)], data)
 
 
-def query_unique(data, value):
-    data_uniq = set()
-    for item in data:
-        if item not in data_uniq:
-            data_uniq.add(item)
-            yield item
+def query_unique(data: Union[Iterator[str], Iterable[str]], value: Any) -> Union[Iterator[str], Iterable[str]]:
+    return set(data)
 
 
-def query_sort(data, value):
-    assert value in ["asc", "desc"], "Wrong sort value"
+def query_sort(data: Union[Iterator[str], Iterable[str]], value: str) -> Union[Iterator[str], Iterable[str]]:
+    if value not in ["asc", "desc"]:
+        raise ValueError("Wrong sort value")
     return sorted(data, reverse=value == "desc")
 
 
-def query_limit(data, value):
+def query_limit(data: Union[Iterator[str], Iterable[str]], value: str) -> Union[Iterator[str], Iterable[str]]:
     return map(itemgetter(0), zip(data, range(int(value))))
+
+
+def query_regex(data: Union[Iterator[str], Iterable[str]], value: str):
+    regex = re.compile(value)
+    return filter(lambda s: regex.search(s) is not None, data)

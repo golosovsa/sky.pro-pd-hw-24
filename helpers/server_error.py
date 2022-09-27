@@ -1,7 +1,8 @@
 """
     Exception ServerError
 """
+from werkzeug.exceptions import HTTPException
 
 
-class ServerError(Exception):
+class ServerError(HTTPException):
     pass
